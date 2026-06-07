@@ -8,6 +8,7 @@ services:
       - "443:443"   # reserved for future TLS; unused in HTTP-only mode
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./www:/srv/www:ro
       - caddy_data:/data      # persists ACME certs/state for future TLS
       - caddy_config:/config
     networks:

@@ -1,6 +1,11 @@
 # Each app = one site block, routed by Host header, proxied by Docker service name.
 # All services must join the shared external `proxy` network (see README).
 
+http://192.168.1.42, http://dockerproxy {
+	root * /srv/www
+	file_server
+}
+
 http://tensara {
 	reverse_proxy frontend:3000
 }
