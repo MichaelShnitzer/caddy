@@ -1,0 +1,22 @@
+services:
+  caddy:
+    image: caddy:2-alpine
+    container_name: caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"   # reserved for future TLS; unused in HTTP-only mode
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data      # persists ACME certs/state for future TLS
+      - caddy_config:/config
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
+
+volumes:
+  caddy_data:
+  caddy_config:

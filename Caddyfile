@@ -1,0 +1,10 @@
+# Each app = one site block, routed by Host header, proxied by Docker service name.
+# All services must join the shared external `proxy` network (see README).
+
+http://tensara {
+	reverse_proxy frontend:3000
+}
+
+http://pickarr {
+	reverse_proxy pickarr:8787
+}
